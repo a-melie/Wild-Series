@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital@1&family=Lobster&display=swap');
+@import "variables.scss";
+@import "~bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+body {
+  background-color: $primaryBeige;
+  font-family: $main-font;
+  h1 {
+    font-family: $title-font;
+    font-weight: bold;
+    color: $dangerRose;
+  }
+}
+
+nav{
+  font-family:$title-font;
+  font-size:1.5rem;
+}
