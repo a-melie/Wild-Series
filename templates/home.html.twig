@@ -1,4 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <h1 class="text-center mt-4">{{ bienvenue }}</h1>
+    <a href="{{ path('wild_show', { 'slug': "walking-dead" }) }}" class="text-danger">
+        Testing show() method from WildController with a real program s slug.
+    </a>
+    <br>
+    <a href="{{ path('wild_index') }}" class="text-danger">
+        Testing index() method from WildController to view all programs.
+    </a>
+
 {% endblock %}
