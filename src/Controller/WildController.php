@@ -47,7 +47,7 @@ class WildController extends AbstractController
         );
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
+            ->findOneBy(['title' => $slug]);
         if (!$program){
             throw $this->createNotFoundException('No program with ' . $slug . ' title, found in program\'s table.');
         }
