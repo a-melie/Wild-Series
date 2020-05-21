@@ -5,9 +5,11 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Program;
+use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 /**
  * Class WildController
  * @package App\Controller
@@ -32,7 +34,7 @@ class WildController extends AbstractController
 
     /**
      *
-     * @param string $slug The slugger
+     * @param string $slug
      * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show")
      * @return Response
      */
@@ -87,6 +89,40 @@ class WildController extends AbstractController
             ]);
 
     }
+
+    /**
+     * @Route("/program/{slug<^[a-z0-9-]+$>}", name="show_program")
+     * @param string $slug
+     * @return Response
+     */
+    public function showByProgram(string $slug): Response
+    {
+        $slug = str_replace('-', ' ', $slug);
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findOneBy(['title'=>$slug]);
+        $seasons = $program->getSeasons();
+
+        return $this->render('wild/program.html.twig', [
+            'slug'  => $slug,
+            'program' => $program,
+        ]);
+    }
+
+    /**
+    * @Route("/season/{id}", name = "show_season")
+    **/
+    public function showBySeason(int $id)
+    {
+        $season= $this->getDoctrine()->getRepository(Season::class)->findOneBy(['id'=>$id]);
+        $program = $season->getProgram();
+        $episodes = $season->getEpisodes();
+
+        return $this->render('wild/season.html.twig', ['program' => $program,
+        'episodes'=> $episodes,
+        'season'=> $season]);
+    }
+
 
 }
 

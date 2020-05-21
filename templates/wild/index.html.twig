@@ -3,15 +3,19 @@
 {% block title %}All programs{% endblock %}
 
 {% block body %}
-    <h1>Toutes les séries de la table program : </h1>
+    <div class="container">
+    <h1 class="text-center mt-3 mb-3">Toutes les séries : </h1>
     {% for program in programs %}
         <div>
-            <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+            <h3><a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}"
+                   class="text-danger">{{ loop.index }} / {{ program.title }}</a></h3>
+            <p>Catégorie : {{ program.category.name }}</p>
             <p>{{ program.summary }}</p>
         </div>
     {% else %}
         Aucune série trouvée.
     {% endfor %}
+    </div>
     <a href="{{ path('app_index') }}" class="text-danger">
         Retour à l'accueil
     </a>
