@@ -40,6 +40,16 @@ class Season
      */
     private $program;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Episode::class, mappedBy="season")
+     */
+    private $episodes;
+
+    public function __construct()
+    {
+        $this->episodes = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,4 +102,43 @@ class Season
 
         return $this;
     }
+
+    /**
+     * @return Collection|Episode[]
+     */
+    public function getEpisodes(): Collection
+    {
+        return $this->episodes;
+    }
+
+    /**
+     * @param Episode $episode
+     * @return $this
+     */
+    public function addEpisode(Episode $episode): self
+    {
+        if (!$this->episodes->contains($episode)){
+            $this->episodes[] = $episode;
+            $episode->setSeason($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Episode $episode
+     * @return $this
+     */
+    public function removeEpisode(Episode $episode): self
+    {
+        if ($this->episodes->contains($episode)){
+            $this->episodes->removeElement($episode);
+            // set the owning side to null (unless already changed)
+            if ($episode->getSeason()=== $this){
+                $episode->setSeason(null);
+            }
+        }
+        return $this;
+    }
+
+
 }
