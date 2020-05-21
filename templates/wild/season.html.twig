@@ -3,26 +3,21 @@
 {% block body %}
     <div class="container bg-primary border border-secondary mt-3 mb-3 rounded shadow">
         <div class="text-center p-3">
-            <h1>{{ season.program.title }}</h1>
+            <h1>{{ program.title }}</h1>
             <h2>Saison {{ season.number }}</h2>
             <p>{{ season.description }}</p>
         </div>
         <div>
-            {% if season.episodes|length > 0 %}
-                <h3 class="ml-4">Les épisodes :</h3>
-                <ul>
-                    {% for episode in season.episodes %}
-                        <li>Episode {{ episode.number }} - {{ episode.title }}<br><p>{{ episode.synopsis }}</p></li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <h3> Aucun épisode disponible pour l'instant.</h3>
-            {% endif %}
+            <ul>
+                {% for episode in season.episodes %}
+                    <li>Episode {{ episode.number }} : {{ episode.title }}<p>{{ episode.synopsis }}</p></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="d-flex flex-column ml-4">
         <a href="{{ path('wild_show_program', {slug: season.program.title|lower|replace({' ' : '-'})}) }}"  class="text-danger">Retour à la liste des saisons</a>
-        <a href="{{ path('wild_show', {slug: season.program.title|lower|replace({' ' : '-'})}) }}" class="text-danger">Retour à {{ season.program.title }}</a>
-        <a href="{{ path('app_index') }}" class="text-danger">Retour à l'accueil</a>
+        <a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}" class="text-danger">Retour à {{ program.title }}</a>
+        <a href="{{ path('wild_index') }}" class="text-danger">Retour à la liste des séries</a>
     </div>
 {% endblock %}
