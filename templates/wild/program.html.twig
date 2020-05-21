@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div class="container ">
+            {% for season in program.seasons %}
+                <a href="{{ path('wild_show', {id: program.id}) }}" class="text-danger">
+                    <h2>Saison {{ season.number }} ({{ season.year }})</h2>
+                </a>
+                <p>{{ season.description }}</p>
+            {% endfor %}
+        </div>
+
+        <p><a href="{{ path('wild_show', {id: program.id}) }}" class="text-danger">Retour à {{ program.title }}</a></p>
+        <a href="{{ path('app_index') }}" class="text-danger">Retour à l'accueil</a>
+
+{% endblock %}
