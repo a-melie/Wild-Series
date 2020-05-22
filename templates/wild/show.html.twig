@@ -9,12 +9,12 @@
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
             <p>Categorie : {{ program.category.name }}</p>
-            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="text-danger">Les saisons</a>
+            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="btn btn-danger text-success ">Les saisons</a>
         </div>
     </div>
     </div>
-    <a href="{{ path('wild_index') }}" class="text-danger ml-4">
-        Retour à la liste des séries
+    <a href="{{ path('wild_index') }}" class="btn btn-danger text-success ml-4">
+        Retour à l'accueil
     </a>
 
 {% endblock %}
