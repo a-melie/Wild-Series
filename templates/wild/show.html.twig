@@ -3,17 +3,17 @@
 
 {% block body %}
     <div class="container bg-primary border border-secondary mt-3 mb-3 rounded shadow ">
-    <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+    <div class="media mt-3 mb-3">
+        <img class="align-self-start mr-3 imgsize" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
             <p>Categorie : {{ program.category.name }}</p>
-            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="text-danger">Les saisons</a>
+            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="btn btn-danger text-success ">Les saisons</a>
         </div>
     </div>
     </div>
-    <a href="{{ path('wild_index') }}" class="text-danger ml-4">
+    <a href="{{ path('wild_index') }}" class="btn btn-danger text-success ml-4">
         Retour à l'accueil
     </a>
 

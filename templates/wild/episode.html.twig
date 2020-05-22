@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container text-center bg-primary border border-secondary rounded shadow mt-3 p-3">
+        <h1 class=" text-center">{{ program.title }} </h1>
+        <p class=" text-center mt-5"> {{ program.summary }}</p>
+        <div class="d-flex justify-content-center">
+            <div class="card mt-5">
+                <h5 class="card-header text-center text-secondary bg-warning"> Episode {{ episode.number }} - Saison {{ season.number }}</h5>
+                <div class="card-body bg-primary">
+                    <h4 class="card-title text-center">{{episode.title}}</h4>
+                    <p class="card-text">{{episode.synopsis}}</p>
+                    <div class="mt-5">
+                    <a href="{{ path('wild_show_season', {id: season.id}) }}" class="btn btn-danger text-success">Retour à la saison {{ season.number }}</a>
+                    <a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}" class="btn btn-danger ml-4 text-success">Détails de la série</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
