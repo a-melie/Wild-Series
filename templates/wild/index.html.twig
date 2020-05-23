@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
 {% block title %}All programs{% endblock %}
 
 {% block body %}
     <div class="container">
-    <h1 class="text-center mt-3 mb-3">Toutes les séries : </h1>
+    <h1 class="text-center m-3">Toutes les séries : </h1>
+        {{ form_start(form, { 'attr' : { 'class': 'm-5 text-center'} }) }}
+        {{ form_widget(form.searchField) }}
+        <button type="submit" name="btnSearch" class="btn btn-danger text-success m-3">Rechercher</button>
+        {{ form_end(form) }}
     {% for program in programs %}
         <div>
             <h3><a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}"
