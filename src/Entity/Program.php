@@ -53,7 +53,7 @@ class Program
      */
     private $seasons;
 
-    private function __construct()
+    public function __construct()
     {
         $this->seasons = new ArrayCollection();
     }
