@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Ajout de catégorie{% endblock %}
+
+{% block body %}
+    <div class="container bg-primary border border-secondary mt-5 mb-3 rounded shadow p-5">
+        <h1 class="text-center mb-3">Ajout nouvelle catégorie :</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.name,{ 'label': 'Nom de la catégorie' }) }}
+        <button class="btn btn-danger text-success">{{ button_label|default('Enregistrer') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
