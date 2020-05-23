@@ -40,7 +40,9 @@ class WildController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()){
             $data = $form->getData();
-        }
+            $programs = $this->getDoctrine()->getRepository(Program::class)->findByTitle($data);
+            }
+
 
         return $this->render('wild/index.html.twig', ['programs'=> $programs,
             'form'=>$form->createView()]);

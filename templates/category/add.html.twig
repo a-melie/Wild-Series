@@ -4,6 +4,14 @@
 {% block title %}Ajout de catégorie{% endblock %}
 
 {% block body %}
+    {% if message is defined and message is not empty %}
+    <div class="alert alert-warning alert-dismissible fade show m-5 text-center" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
     <div class="container bg-primary border border-secondary mt-5 mb-3 rounded shadow p-5">
         <h1 class="text-center mb-3">Ajout nouvelle catégorie :</h1>
         {{ form_start(form) }}

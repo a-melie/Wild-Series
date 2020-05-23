@@ -22,6 +22,7 @@ class CategoryController extends AbstractController
      */
     public function add(Request $request): Response
     {
+        $message = '';
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -30,10 +31,12 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($data);
             $entityManager->flush();
+            $message = 'Catégorie ajoutée avec succès !';
         }
 
         return $this->render('category/add.html.twig', [
             'form'=>$form->createView(),
+            'message'=>$message,
         ]);
     }
 }
