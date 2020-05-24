@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Episode;
+use App\Entity\Season;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
+use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +28,12 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="episode_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="episode_new", methods={"GET","POST"})
+     * @param Request $request
+     * @param Season $season
+     * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request,Season $season): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
@@ -36,6 +41,7 @@ class EpisodeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $episode->setSeason($season);
             $entityManager->persist($episode);
             $entityManager->flush();
 
@@ -44,17 +50,25 @@ class EpisodeController extends AbstractController
 
         return $this->render('episode/new.html.twig', [
             'episode' => $episode,
+            'season' => $season,
             'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="episode_show", methods={"GET"})
+     * @param Episode $episode
+     * @param SeasonRepository $seasonRepository
+     * @return Response
      */
-    public function show(Episode $episode): Response
+    public function show(Episode $episode, SeasonRepository $seasonRepository): Response
     {
+
+        $season = $seasonRepository->findOneById($episode->getSeason());
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
+            'season' => $season,
+
         ]);
     }
 

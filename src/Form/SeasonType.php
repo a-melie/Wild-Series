@@ -12,10 +12,9 @@ class SeasonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('number',null, ['label' => 'Saison Numéro'])
-            ->add('year',null, ['label' => 'Année de création'])
-            ->add('description',null, ['label' => 'Description'])
-        ;
+            ->add('number', null, ['label' => 'Numéro de saison'])
+            ->add('year', null, ['label' => 'Année'])
+            ->add('description', null, ['label' => 'Description']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

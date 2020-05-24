@@ -12,9 +12,9 @@ class EpisodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',null, ['label' => 'Titre'])
-            ->add('number',null, ['label' => 'Numéro de l\'épisode'])
-            ->add('synopsis',null, ['label' => 'Synopsis'])
+            ->add('title', null, ['label' => 'Titre'])
+            ->add('number', null, ['label' => 'Numéro d\'épisode'])
+            ->add('synopsis', null, ['label' => 'Synopsis'])
         ;
     }
 

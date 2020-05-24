@@ -1,42 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Program{% endblock %}
+{% block title %}Série{% endblock %}
 
 {% block body %}
-    <h1>Program</h1>
+    <div class="container text-center  mt-3 p-3">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ program.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ program.title }}</td>
-            </tr>
-            <tr>
-                <th>Summary</th>
-                <td>{{ program.summary }}</td>
-            </tr>
-            <tr>
-                <th>Poster</th>
-                <td>{{ program.poster }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ program.country }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ program.year }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h1>{{ program.title }}</h1>
+        <div class="d-flex align-items-center">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Summary</th>
+                    <td>{{ program.summary }}</td>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <td>{{ program.country }}</td>
+                </tr>
+                <tr>
+                    <th>Year</th>
+                    <td>{{ program.year }}</td>
+                </tr>
+                {% for season in program.seasons %}
+                <tr>
+                    <th></th>
+                    <td><a href="{{ path('season_show', {program: season.program.id, id: season.id}) }}" class="text-danger">Saison {{ season.number }} - {{ season.year }}</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <img class="imgsize ml-4" src="{{ program.poster }}" alt="affiche {{ program.title }}">
+            </div>
+        </div>
+        <div class=" d-flex justify-content-between m-3 p-3">
+            <a class="text-success btn btn-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
+            <a class="text-success btn btn-warning" href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
+            {{ include('program/_delete_form.html.twig') }}
+        </div>
+    </div>
+    <a class="text-success btn btn-warning m-5" href="{{ path('program_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('program_index') }}">back to list</a>
-
-    <a href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
-
-    {{ include('program/_delete_form.html.twig') }}
 {% endblock %}

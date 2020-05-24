@@ -3,37 +3,42 @@
 {% block title %}Season index{% endblock %}
 
 {% block body %}
-    <h1>Season index</h1>
 
-    <table class="table">
-        <thead>
+    <h1 class="text-center m-3">Season index</h1>
+    <a href="{{ path('program_index') }}" class="btn btn-danger text-success text-center m-5">Back to Programs</a>
+
+    <div class="container d-flex flex-column justify-content-center">
+        <table class="table table-hover mt-3">
+            <thead>
             <tr>
-                <th>Id</th>
+                <th>Name</th>
+                <th>Poster</th>
                 <th>Number</th>
                 <th>Year</th>
                 <th>Description</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for season in seasons %}
-            <tr>
-                <td>{{ season.id }}</td>
-                <td>{{ season.number }}</td>
-                <td>{{ season.year }}</td>
-                <td>{{ season.description }}</td>
-                <td>
-                    <a href="{{ path('season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('season_edit', {'id': season.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for season in seasons %}
+                <tr>
+                    <td>{{ season.program.title }}</td>
+                    <td><img src="{{ season.program.poster }}" alt="" class="small_img"></td>
+                    <td>{{ season.number }}</td>
+                    <td>{{ season.year }}</td>
+                    <td>{{ season.description }}</td>
+                    <td class="d-flex flex-column">
+                        <a href="{{ path('season_show', {'id': season.id}) }}" class=" text-success btn btn-warning mt-3">show</a>
+                        <a href="{{ path('season_edit', {'id': season.id}) }}" class=" text-success btn btn-warning mt-3">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('season_new') }}">Create new</a>
 {% endblock %}
