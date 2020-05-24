@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}New Program{% endblock %}
+
+{% block body %}
+    <div class="container text-center  mt-3 p-3">
+        <h1 class="text-center mt-3">Ajouter une nouvelle série</h1>
+
+        {{ include('program/_form.html.twig') }}
+
+    </div>
+    <a href="{{ path('program_index') }}" class=" text-success btn btn-warning m-5">Retour à la liste</a>
+
+{% endblock %}

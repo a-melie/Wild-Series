@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Season{% endblock %}
+
+{% block body %}
+    <div class="container text-center  mt-3 p-3">
+        <h1>{{ season.program.title }}</h1>
+        <table class="table mt-5">
+            <tbody>
+            <tr>
+                <th>Season Number</th>
+                <td>{{ season.number }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ season.year }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ season.description }}</td>
+            </tr>
+            <tr>
+                <th>Episodes</th>
+                <td class="text-left">
+                    <ul>
+                        {% for episode in season.episodes %}
+                            <li class="list-group">
+                                <a href="{{ path('episode_show', {'id': episode.id}) }}" class="text-danger">{{ episode.number }}-{{ episode.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="{{ path('season_edit', {'id': season.id}) }}" class=" text-success btn btn-warning mt-3">edit</a>
+        <a href="{{ path('episode_new', {'id': season.id}) }}" class="text-success btn btn-warning mt-3">Add episodes</a>
+        {{ include('season/_delete_form.html.twig') }}
+    </div>
+    <a href="{{ path('season_index') }}" class=" text-success btn btn-warning m-5">back to list</a>
+
+{% endblock %}
