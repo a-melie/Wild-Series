@@ -23,16 +23,17 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="ne peut pas être vide")
+     * @Assert\NotBlank(message="le tite ne peut pas être vide")
      * @Assert\Length(max="255", maxMessage="Le titre du program saisi{{ value }} est trop long, il ne devrait pas dépasser {{ limit }} caractères")
-     * @Assert\Title
      */
 
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="ne peut pas être vide")
+     * @Assert\NotBlank(message="le résumé ne peut pas être vide")
+     * @Assert\Regex(pattern="/plus belle la vie/i", match=false,
+     *      message="On parle de vraies séries ici")
      */
     private $summary;
 
