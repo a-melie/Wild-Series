@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\EpisodeRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=EpisodeRepository::class)
+ * @UniqueEntity("title", message="ce titre d'épisode existe déjà")
  */
 class Episode
 {
@@ -18,21 +21,30 @@ class Episode
     private $id;
 
     /**
+     * @Assert\NotBlank(message="le titre doit être complété")
+     * @Assert\Length(max="255", maxMessage="Le nom de l'épisode saisi '{{ value }}' est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("integer")
+     * @Assert\Length(max="3")
      * @ORM\Column(type="integer")
      */
     private $number;
 
     /**
+     * @Assert\NotBlank(message="le synopsis doit être complété")
+     * @Assert\Length(max="500", maxMessage="La synopsis ne doit pas dépasser {{ limit }} caractères, merci.")
      * @ORM\Column(type="text")
      */
     private $synopsis;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max="3")
      * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */

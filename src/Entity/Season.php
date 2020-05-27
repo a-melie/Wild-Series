@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
+ * @UniqueEntity(fields={"program","number"}, errorPath="number", message="Cette saison existe déjà.")
  */
 class Season
 {
@@ -20,21 +23,30 @@ class Season
     private $id;
 
     /**
+     * @Assert\NotBlank(message="le numéro de saison doit être complété")
+     * @Assert\Type("integer")
+     * @Assert\Length(max="3")
      * @ORM\Column(type="integer")
      */
     private $number;
 
     /**
+     * @Assert\NotBlank(message="l'année doit être complétée")
+     * @Assert\Type("integer")
+     * @Assert\Length(min="4", max="4", exactMessage="L'année doit être du format YYYY")
      * @ORM\Column(type="integer")
      */
     private $year;
 
     /**
+     * @Assert\NotBlank(message="la description doit être complétée")
+     * @Assert\Length(max="500", maxMessage="La description ne doit pas dépasser {{ limit }} caractères")
      * @ORM\Column(type="text")
      */
     private $description;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
      * @ORM\JoinColumn(nullable=false)
      */
