@@ -5,9 +5,12 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
+ * @UniqueEntity("title", message="ce titre existe déjà")
  */
 class Program
 {
@@ -20,11 +23,17 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="le tite ne peut pas être vide")
+     * @Assert\Length(max="255", maxMessage="Le titre du program saisi{{ value }} est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      */
+
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="le résumé ne peut pas être vide")
+     * @Assert\Regex(pattern="/plus belle la vie/i", match=false,
+     *      message="On parle de vraies séries ici")
      */
     private $summary;
 
@@ -34,18 +43,23 @@ class Program
     private $poster;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="programs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
+     * @Assert\NotBlank(message="Le pays doit être complété")
+     * @Assert\Length(max="255", maxMessage="La pays saisie '{{ value }}' est trop long, il ne devrait pas dépasser {{ limit }} caractères")
      * @ORM\Column(type="string", length=255)
      */
     private $country;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="l'année doit être complétée")
+     * @Assert\Length(min="4", max="4", exactMessage="L'année doit être du format YYYY")
      */
     private $year;
     /**
