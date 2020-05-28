@@ -27,12 +27,23 @@
                     <td><a href="{{ path('season_show', {program: season.program.id, id: season.id}) }}" class="text-danger">Saison {{ season.number }} - {{ season.year }}</a></td>
                 </tr>
                 {% endfor %}
+                <tr>
+                    <th>Actor</th>
+                    <td>
+                    {% for actor in program.actors %}
+                        <li>{{ actor.name }} </li>
+                    {% else %}
+                        <li>Aucun acteur pour cette série</li>
+                    {% endfor %}
+                    </td>
+                </tr>
                 </tbody>
             </table>
             <div>
                 <img class="imgsize ml-4" src="{{ program.poster }}" alt="affiche {{ program.title }}">
             </div>
         </div>
+
         <div class=" d-flex justify-content-between m-3 p-3">
             <a class="text-success btn btn-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
             <a class="text-success btn btn-warning" href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
