@@ -43,7 +43,6 @@ class Episode
     private $synopsis;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max="3")
      * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")

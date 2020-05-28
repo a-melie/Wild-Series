@@ -46,7 +46,6 @@ class Season
     private $description;
 
     /**
-     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="seasons")
      * @ORM\JoinColumn(nullable=false)
      */

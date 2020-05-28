@@ -1,9 +1,4 @@
-Q13-Symfony : Validation :
-Not blank
-https://www.loom.com/share/db44e71be6154d089e90125fc63a6196
-plus belle la vie
-https://www.loom.com/share/dda5c62fd45349289871ef259be58587
-uniqueEntity
+Q13-Symfony : Validation : https://www.loom.com/share/921c1bbbde9f41d9b801aef83dafaa5a
 https://www.loom.com/share/40136a1512fb45918403ba8ce5cbe204
 Q12-Symfony : Générer un CRUD : https://www.loom.com/share/aada9dbf263c457fb22abc60126acdf7
 Q11-Symfony : Gardez la “form” ! : https://www.loom.com/share/a0cb505fd8cf499f9afa01ec71d0c21d
