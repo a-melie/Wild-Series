@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=SeasonRepository::class)
- * @UniqueEntity(fields={"program","number"}, errorPath="number", message="Cette saison existe déjà.")
+ * 
  */
 class Season
 {
