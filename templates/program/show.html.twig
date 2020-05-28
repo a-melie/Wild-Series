@@ -28,10 +28,10 @@
                 </tr>
                 {% endfor %}
                 <tr>
-                    <th>Actor</th>
+                    <th>Actor(s)</th>
                     <td>
                     {% for actor in program.actors %}
-                        <li>{{ actor.name }} </li>
+                        <li class="list-unstyled"><a class="text-danger" href="{{ path('actor_show', {'id': actor.id}) }}">{{ actor.name }}</a> </li>
                     {% else %}
                         <li>Aucun acteur pour cette série</li>
                     {% endfor %}
