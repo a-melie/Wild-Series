@@ -52,12 +52,12 @@ class Program
     /**
      * @Assert\NotBlank(message="Le pays doit être complété")
      * @Assert\Length(max="255", maxMessage="La pays saisie '{{ value }}' est trop long, il ne devrait pas dépasser {{ limit }} caractères")
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\NotBlank(message="l'année doit être complétée")
      * @Assert\Length(min="4", max="4", exactMessage="L'année doit être du format YYYY")
      */
