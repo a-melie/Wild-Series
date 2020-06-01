@@ -6,6 +6,8 @@ namespace App\DataFixtures;
 use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     const PROGRAM = [
@@ -52,13 +54,19 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'category' => 'categorie_4',
         ],
     ];
+
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
         return [CategoryFixtures::class];
     }
 
-
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         $i = 0;
         foreach (self::PROGRAM as $title => $data) {

@@ -12,13 +12,18 @@ use Faker;
 
 class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
         return  [SeasonFixtures::class];
     }
 
-
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('en_US');
 
@@ -44,9 +49,6 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
                 $episodeRef++;
             }
         }
-
-
-
             $manager->flush();
     }
 

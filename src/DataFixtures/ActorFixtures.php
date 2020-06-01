@@ -6,6 +6,7 @@ namespace App\DataFixtures;
 use App\Entity\Actor;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
@@ -17,12 +18,18 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
         'Danai Gurira' => ['program_0'],
     ];
 
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
         return [ProgramFixtures::class];
     }
 
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         $i = 0;
         foreach (self::ACTOR as $name => $programs) {

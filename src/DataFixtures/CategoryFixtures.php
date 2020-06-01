@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
 
 
 class CategoryFixtures extends Fixture
@@ -16,7 +17,11 @@ class CategoryFixtures extends Fixture
         'Fantastique',
         'Horreur',
     ];
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         foreach (self::CATEGORIES as $key => $categoryName){
             $category = new Category();
