@@ -3,8 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Actor;
+use App\Entity\Category;
 use App\Entity\Program;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,12 +18,13 @@ class ProgramType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, ['label' => 'Titre'])
-            ->add('summary', null, ['label'=> 'Résumé'])
-            ->add('poster',null, ['label'=> 'Affiche'])
-            ->add('country',null, ['label'=> 'Pays'])
-            ->add('year',null, ['label'=> 'Année'])
-            ->add('category', null, [
+            ->add('title', TextType::class, ['label' => 'Titre'])
+            ->add('summary', TextType::class, ['label'=> 'Résumé'])
+            ->add('poster',UrlType::class, ['label'=> 'Affiche'])
+            ->add('country',TextType::class, ['label'=> 'Pays'])
+            ->add('year',IntegerType::class, ['label'=> 'Année'])
+            ->add('category', EntityType::class, [
+                'class'=>Category::class,
                 'choice_label' => 'name',
                 'label'        =>'Catégorie'],)
             ->add('actors', EntityType::class, [

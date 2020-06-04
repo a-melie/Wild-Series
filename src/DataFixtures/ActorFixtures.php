@@ -4,8 +4,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Actor;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
@@ -17,12 +19,18 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
         'Danai Gurira' => ['program_0'],
     ];
 
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
         return [ProgramFixtures::class];
     }
 
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         $i = 0;
         foreach (self::ACTOR as $name => $programs) {
@@ -31,6 +39,9 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             foreach ($programs as $program) {
                 $actor->addProgram($this->getReference($program));
             }
+            $slugify = new Slugify();
+            $slug = $slugify->generate($actor->getName());
+            $actor->setSlug($slug);
             $manager->persist($actor);
             $this->addReference('actor_' . $i, $actor);
             $i++;
@@ -41,6 +52,9 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             $actor = new Actor();
             $actor->setName($faker->name);
             $actor->addProgram($this->getReference('program_' . rand(0,5)));
+            $slugify = new Slugify();
+            $slug = $slugify->generate($actor->getName());
+            $actor->setSlug($slug);
             $manager->persist($actor);
             $this->addReference('actor_' . $j, $actor);
         }

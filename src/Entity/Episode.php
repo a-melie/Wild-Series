@@ -29,7 +29,7 @@ class Episode
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Type("integer")
+     * @Assert\Type("integer", message="le numéro de la saions doit être un chiffre ou un nombre")
      * @Assert\Length(max="3")
      * @ORM\Column(type="integer")
      */
@@ -43,11 +43,15 @@ class Episode
     private $synopsis;
 
     /**
-     * @Assert\Length(max="3")
      * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="episodes")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $season;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
 
     public function getId(): ?int
@@ -99,6 +103,18 @@ class Episode
     public function setSeason(?Season $season): self
     {
         $this->season = $season;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

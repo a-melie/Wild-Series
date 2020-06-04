@@ -25,7 +25,7 @@
                     <ul>
                         {% for episode in season.episodes %}
                             <li class="list-group">
-                                <a href="{{ path('episode_show', {'id': episode.id}) }}" class="text-danger">{{ episode.number }}-{{ episode.title }}</a>
+                                <a href="{{ path('episode_show', {'slug': episode.slug}) }}" class="text-danger">{{ episode.number }}-{{ episode.title }}</a>
                             </li>
                         {% endfor %}
                     </ul></td>

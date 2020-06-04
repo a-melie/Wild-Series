@@ -11,7 +11,7 @@
             <img src="{{ program.poster }}" class="card-img-top" alt="affiche de {{ program.title }}">
             <div class="card-body overflow-auto">
                 <h5 class="card-title ">{{program.title}}</h5>
-                <a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}" class="text-success btn btn-warning m-2">Détails</a>
+                <a href="{{ path('wild_show', {slug: program.slug}) }}" class="text-success btn btn-warning m-2">Détails</a>
             </div>
         </div>
     {% endfor %}

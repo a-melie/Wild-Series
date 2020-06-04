@@ -9,7 +9,16 @@
             <h1 class="mt-0">{{ program.title }}</h1>
             <p>{{ program.summary }}</p>
             <p>Categorie : {{ program.category.name }}</p>
-            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="btn btn-danger text-success ">Les saisons</a>
+            <p>Acteurs : </p>
+            <ul>
+                {% for actor in program.actors %}
+                    <li class="list-unstyled">{{ actor.name }}</li>
+                {% else %}
+                    <li class="list-unstyled" >Aucun acteur pour cette série</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ path('wild_show_program', {slug: program.slug}) }}"  class="btn btn-danger text-success ">Les saisons</a>
+
         </div>
     </div>
     </div>

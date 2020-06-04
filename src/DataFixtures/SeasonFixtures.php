@@ -6,16 +6,23 @@ namespace App\DataFixtures;
 use App\Entity\Season;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 class SeasonFixtures extends Fixture implements DependentFixtureInterface
 {
+    /**
+     * @return array
+     */
     public function getDependencies()
     {
         return [ProgramFixtures::class];
     }
 
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {;
         $faker = Faker\Factory::create('en_US');
         for ($i=0; $i<6 ; $i++) {
