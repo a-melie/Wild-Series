@@ -17,7 +17,7 @@
                     <li class="list-unstyled" >Aucun acteur pour cette série</li>
                 {% endfor %}
             </ul>
-            <a href="{{ path('wild_show_program', {slug: program.title|lower|replace({' ' : '-'})}) }}"  class="btn btn-danger text-success ">Les saisons</a>
+            <a href="{{ path('wild_show_program', {slug: program.slug}) }}"  class="btn btn-danger text-success ">Les saisons</a>
 
         </div>
     </div>

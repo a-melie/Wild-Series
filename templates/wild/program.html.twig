@@ -10,11 +10,11 @@
             <p>{{ season.description }}</p>
         {% endfor %}
         {% if program.seasons is empty %}
-            <p>pas d'episode disponible</p>
+            <p>pas d'épisode disponible</p>
         {% endif %}
     </div>
     <div class=" ml-3">
-    <a href="{{ path('wild_show', {slug: program.title|lower|replace({' ' : '-'})}) }}" class="btn btn-danger text-success ">Retour à {{ program.title }}</a>
+    <a href="{{ path('wild_show', {slug: program.slug}) }}" class="btn btn-danger text-success ">Retour à {{ program.title }}</a>
     <a href="{{ path('wild_index') }}" class="btn btn-danger text-success ">Retour à la liste des séries</a>
     </div>
 {% endblock %}

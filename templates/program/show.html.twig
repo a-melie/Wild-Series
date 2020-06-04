@@ -31,7 +31,7 @@
                     <th>Actor(s)</th>
                     <td>
                     {% for actor in program.actors %}
-                        <li class="list-unstyled"><a class="text-danger" href="{{ path('actor_show', {'id': actor.id}) }}">{{ actor.name }}</a> </li>
+                        <li class="list-unstyled"><a class="text-danger" href="{{ path('actor_show', {'slug': actor.slug}) }}">{{ actor.name }}</a> </li>
                     {% else %}
                         <li class="list-unstyled" >Aucun acteur pour cette série</li>
                     {% endfor %}
@@ -46,7 +46,7 @@
 
         <div class=" d-flex justify-content-between m-3 p-3">
             <a class="text-success btn btn-warning" href="{{ path('season_new', {'id': program.id}) }}">Ajouter une saison</a>
-            <a class="text-success btn btn-warning" href="{{ path('program_edit', {'id': program.id}) }}">Modifier</a>
+            <a class="text-success btn btn-warning" href="{{ path('program_edit', {'slug': program.slug}) }}">Modifier</a>
             {{ include('program/_delete_form.html.twig') }}
         </div>
     </div>

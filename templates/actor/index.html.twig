@@ -19,8 +19,8 @@
             <tr>
                 <td>{{ actor.name }}</td>
                 <td>
-                    <a href="{{ path('actor_show', {'id': actor.id}) }}" class="text-success btn btn-warning mt-3">show</a>
-                    <a href="{{ path('actor_edit', {'id': actor.id}) }}" class="text-success btn btn-warning mt-3" >edit</a>
+                    <a href="{{ path('actor_show', {'slug': actor.slug}) }}" class="text-success btn btn-warning mt-3">show</a>
+                    <a href="{{ path('actor_edit', {'slug': actor.slug}) }}" class="text-success btn btn-warning mt-3" >edit</a>
                 </td>
             </tr>
         {% else %}
