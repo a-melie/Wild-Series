@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Program added</title>
+    {% apply inline_css %}
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #ffe9c5;
+            font-family: "Libre Franklin", sans-serif;
+            text-align: center;
+        }
+        body h1, body h2 {
+            font-family: "Lobster", cursive;
+            font-weight: bold;
+            color: #eb6383;
+            font-size:1.5rem;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+   {% block content %}
+    {% endblock %}
+</div>
+{% endapply %}
+</body>
+</html>
+
+
