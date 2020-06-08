@@ -28,6 +28,7 @@ class UserFixtures extends Fixture
             $subscriber,
             'subscriberpassword'
         ));
+        $subscriber->setUsername('suscriber1');
         $manager->persist($subscriber);
 
         $admin = new User();
@@ -37,6 +38,7 @@ class UserFixtures extends Fixture
             $admin,
             'adminpassword'
         ));
+        $admin->setUsername('Admin1');
         $manager->persist($admin);
 
         $manager->flush();
