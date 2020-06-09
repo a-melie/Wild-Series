@@ -21,29 +21,21 @@
             <div class="card-body bg-primary">
                 <h4 class="card-title text-center"></h4>
                 <p class="card-text">
-                    {{ form_start(form) }}
-                    <div>
-                        {{ form_label(form.comment) }}
-                        {{ form_widget(form.comment) }}
-                    </div>
-                    <div class="mt-3">
-                        {{ form_widget(form.rate) }}
-                        {{ form_label(form.rate) }}
-                    </div>
-                    <button class=" text-success btn btn-warning mt-3">{{ button_label|default('Ajouter') }}</button>
-                    {{ form_end(form) }}
+                    {{ include('comment/_form.html.twig') }}
                 </p>
-                <div class="mt-5">
-                </div>
-
-            <ul>
-                {% for comment in comments|reverse %}
-                    <li class="list-group">
-                        <h6> {{ comment.author.displayName | capitalize }} a laissé son avis</h6>
-                        <p>{{ comment.rate }}/5 <br>{{ comment.comment }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
+                <ul class="mt-5">
+                    {% for comment in comments|reverse %}
+                        <li class="list-group border-bottom mt-3">
+                            <h6> {{ comment.author.displayName | capitalize }} a laissé son avis</h6>
+                            <p>{{ comment.rate }}/5 <br>{{ comment.comment }}</p>
+                            {% if is_granted('ROLE_SUBSCRIBER') %}
+                                {% if comment.author.id == app.user.id %}
+                                    {{ include('comment/_delete_form.html.twig') }}
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
             {% endif %}
         </div>
