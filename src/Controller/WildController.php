@@ -4,7 +4,6 @@
 namespace App\Controller;
 
 use App\Entity\Category;
-use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
@@ -161,10 +160,7 @@ class WildController extends AbstractController
         $season = $episode->getSeason();
         $program = $season->getProgram();
         $comment = new Comment();
-
-
         $comments = $commentRepository->findBy(['episode' => $episode]);
-
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);

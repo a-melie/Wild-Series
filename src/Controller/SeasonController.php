@@ -66,6 +66,9 @@ class SeasonController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="season_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Season $season
+     * @return Response
      */
     public function edit(Request $request, Season $season): Response
     {
@@ -86,6 +89,9 @@ class SeasonController extends AbstractController
 
     /**
      * @Route("/{id}", name="season_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Season $season
+     * @return Response
      */
     public function delete(Request $request, Season $season): Response
     {

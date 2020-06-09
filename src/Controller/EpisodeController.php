@@ -8,6 +8,7 @@ use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use App\Repository\SeasonRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -106,6 +107,7 @@ class EpisodeController extends AbstractController
      * @param Request $request
      * @param Episode $episode
      * @return Response
+     *
      */
     public function delete(Request $request, Episode $episode): Response
     {

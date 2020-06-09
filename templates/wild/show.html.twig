@@ -12,7 +12,7 @@
             <p>Acteurs : </p>
             <ul>
                 {% for actor in program.actors %}
-                    <li class="list-unstyled">{{ actor.name }}</li>
+                   <li class="list-unstyled">{{ actor.name }}</li>
                 {% else %}
                     <li class="list-unstyled" >Aucun acteur pour cette série</li>
                 {% endfor %}
@@ -25,5 +25,8 @@
     <a href="{{ path('wild_index') }}" class="btn btn-danger text-success ml-4">
         Retour à la liste des séries
     </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('program_edit', { 'slug': program.slug} ) }}" class="btn btn-danger text-success ml-4">Éditer</a>
+    {%endif%}
 
 {% endblock %}
