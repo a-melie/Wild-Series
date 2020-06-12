@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="text-center m-3">Les séries</h1>
-    <div class="container d-flex flex-column justify-content-center">
+    <div class=" d-flex flex-column justify-content-center">
     <a href="{{ path('program_new') }}" class="btn btn-danger text-success text-center m-5">Ajouter une nouvelle série</a>
     <table class="table table-hover mt-3">
         <thead>
@@ -15,6 +15,7 @@
             <th>Pays</th>
             <th>Année</th>
             <th>Actions</th>
+            <th>Acteurs</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +26,13 @@
                 <td><img src="{{ program.poster }}" alt=" affiche de {{ program.title }}" class="small_img"></td>
                 <td>{{ program.country }}</td>
                 <td>{{ program.year }}</td>
+                <td>
+                    {% for actor in program.actors %}
+                        {{ actor.name }},
+                    {% else %}
+                        Aucun acteur pour cette série
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('program_show', {'slug': program.slug}) }}" class="text-success btn btn-warning mt-3">Afficher</a>
                     <a href="{{ path('program_edit', {'slug': program.slug}) }}" class=" text-success btn btn-warning mt-3 mb-3">Modifier</a>

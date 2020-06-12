@@ -11,6 +11,7 @@ use App\Entity\Season;
 use App\Form\CommentType;
 use App\Form\ProgramSearchType;
 use App\Repository\CommentRepository;
+use App\Repository\ProgramRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,18 +31,18 @@ class WildController extends AbstractController
     /**
      * @Route("/", name="index")
      * @param Request $request
+     * @param ProgramRepository $programRepository
      * @return Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request, ProgramRepository $programRepository): Response
     {
-        $programs= $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findAll();
+        $programs= $programRepository->findAllWithCategories();
         if (!$programs){
             throw $this->createNotFoundException('No program found in program\'s table.');
         }
         $form = $this->createForm(ProgramSearchType::class);
         $form->handleRequest($request);
+
         if ($form->isSubmitted()){
             $data = $form->getData();
             $programs = $this->getDoctrine()
@@ -65,13 +66,11 @@ class WildController extends AbstractController
         if (!$slug) {
             throw $this->createNotFoundException('No slug has been sent to find a program in program\'s table.');
         }
-        $slug = preg_replace(
-            '/-/',
-            ' ', ucwords(trim(strip_tags($slug)), "-")
-        );
+
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findOneBy(['title' => $slug]);
+            ->findOneBy(['slug' => $slug]);
+
         if (!$program){
             throw $this->createNotFoundException('No program with ' . $slug . ' title, found in program\'s table.');
         }
