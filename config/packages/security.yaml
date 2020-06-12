@@ -35,14 +35,13 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/actor, roles: ROLE_ADMIN }
         - { path: ^/category, roles: ROLE_ADMIN }
         - { path: ^/episode, roles: ROLE_ADMIN }
         - { path: ^/program, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/season, roles: ROLE_ADMIN }
-
         - { path: ^/comment, roles: ROLE_USER }
 
 
