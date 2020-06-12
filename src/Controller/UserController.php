@@ -31,10 +31,10 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="/profile", methods={"GET"})
+     * @Route("/{id}", name="user_show", methods={"GET"})
      * @param User $user
      * @return Response
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(User $user): Response
     {

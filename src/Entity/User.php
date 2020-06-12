@@ -15,6 +15,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public const ROLE_SUBSCRIBER = 'ROLE_SUBSCRIBER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -55,6 +58,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->roles = [self::ROLE_SUBSCRIBER];
         $this->comments = new ArrayCollection();
     }
 
