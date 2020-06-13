@@ -21,6 +21,8 @@ class EpisodeController extends AbstractController
 {
     /**
      * @Route("/", name="episode_index", methods={"GET"})
+     * @param EpisodeRepository $episodeRepository
+     * @return Response
      */
     public function index(EpisodeRepository $episodeRepository): Response
     {
@@ -48,7 +50,7 @@ class EpisodeController extends AbstractController
             $episode->setSlug($slug);
             $entityManager->persist($episode);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Un épisode a été ajouté');
             return $this->redirectToRoute('episode_index');
         }
 
@@ -92,7 +94,7 @@ class EpisodeController extends AbstractController
             $episode->setSlug($slugify->generate($episode->getTitle()));
 
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'l\‘épisode a été modifié');
             return $this->redirectToRoute('episode_index');
         }
 
@@ -115,6 +117,7 @@ class EpisodeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($episode);
             $entityManager->flush();
+            $this->addFlash('danger', 'l\'épisode a été supprimé');
         }
 
         return $this->redirectToRoute('episode_index');
