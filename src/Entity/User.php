@@ -59,13 +59,16 @@ class User implements UserInterface
     /**
      * @ORM\ManyToMany(targetEntity=Program::class)
      */
-    private $watchlist;
+    private $program;
+
+
 
     public function __construct()
     {
         $this->roles = [self::ROLE_SUBSCRIBER];
         $this->comments = new ArrayCollection();
         $this->watchlist = new ArrayCollection();
+        $this->program = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,26 +207,39 @@ class User implements UserInterface
     /**
      * @return Collection|Program[]
      */
-    public function getWatchlist(): Collection
+    public function getProgram(): Collection
     {
-        return $this->watchlist;
+        return $this->program;
     }
 
-    public function addWatchlist(Program $watchlist): self
+    /**
+     * @param Program $program
+     * @return $this
+     */
+    public function addProgram(Program $program): self
     {
-        if (!$this->watchlist->contains($watchlist)) {
-            $this->watchlist[] = $watchlist;
+        if (!$this->program->contains($program)) {
+            $this->program[] = $program;
         }
 
         return $this;
     }
 
-    public function removeWatchlist(Program $watchlist): self
+    public function removeProgram(Program $program): self
     {
-        if ($this->watchlist->contains($watchlist)) {
-            $this->watchlist->removeElement($watchlist);
+        if ($this->program->contains($program)) {
+            $this->program->removeElement($program);
         }
 
         return $this;
     }
+    public function isInWatchlist(Program $program): bool
+    {
+        $answer = false;
+        if ($this->program->contains($program)){
+            $answer = true;
+        }
+        return $answer;
+    }
+
 }

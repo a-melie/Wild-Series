@@ -18,7 +18,9 @@
                 {% endfor %}
             </ul>
             <a href="{{ path('wild_show_program', {slug: program.slug}) }}"  class="btn btn-danger text-success ">Les saisons</a>
-
+            <a href="{{ path('program_watchlist', {id : program.id })}}">
+                <i class="{{ app.user.isInWatchlist(program) ? 'fas' : 'far' }} fa-heart watchlist text-danger"></i>
+            </a>
         </div>
     </div>
     </div>
