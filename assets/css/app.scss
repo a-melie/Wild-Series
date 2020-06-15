@@ -32,3 +32,11 @@ nav{
     height: 50vh;
   }
 }
+.like-btn{
+  a{
+    color: black;
+  }
+  a.active{
+   color: $danger;
+  }
+}

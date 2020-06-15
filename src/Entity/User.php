@@ -56,10 +56,18 @@ class User implements UserInterface
      */
     private $bio;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Program::class)
+     */
+    private $program;
+
+
+
     public function __construct()
     {
         $this->roles = [self::ROLE_SUBSCRIBER];
         $this->comments = new ArrayCollection();
+        $this->program = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,4 +202,40 @@ class User implements UserInterface
     {
         return (string) $this->username;
     }
+
+    /**
+     * @return Collection|Program[]
+     */
+    public function getProgram(): Collection
+    {
+        return $this->program;
+    }
+
+    /**
+     * @param Program $program
+     * @return $this
+     */
+    public function addProgram(Program $program): self
+    {
+        if (!$this->program->contains($program)) {
+            $this->program[] = $program;
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->program->contains($program)) {
+            $this->program->removeElement($program);
+        }
+
+        return $this;
+    }
+
+    public function isInWatchlist(Program $program): bool
+    {
+        return $this->program->contains($program);
+    }
+
 }
