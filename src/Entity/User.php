@@ -67,7 +67,6 @@ class User implements UserInterface
     {
         $this->roles = [self::ROLE_SUBSCRIBER];
         $this->comments = new ArrayCollection();
-        $this->watchlist = new ArrayCollection();
         $this->program = new ArrayCollection();
     }
 
@@ -233,13 +232,10 @@ class User implements UserInterface
 
         return $this;
     }
+
     public function isInWatchlist(Program $program): bool
     {
-        $answer = false;
-        if ($this->program->contains($program)){
-            $answer = true;
-        }
-        return $answer;
+        return $this->program->contains($program);
     }
 
 }
