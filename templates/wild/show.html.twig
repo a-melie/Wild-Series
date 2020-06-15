@@ -21,9 +21,9 @@
                     <a href="{{ path('wild_show_program', {slug: program.slug}) }}"  class="text-danger mt-2">Les saisons</a>
                     {% if app.user %}
                         <div class="like-btn">
-                            <a href="#" id="watchlist" class="{{ app.user.isInWatchlist(program) ? 'active' : '' }}"
+                            <a href="#" id="watchlist" class="watchlist {{ app.user.isInWatchlist(program) ? 'active' : '' }}"
                                data-href={{path('program_watchlist', {'id': program.id})}}>
-                                <i class="fa-heart fas fa-4x watchlist ml-2" ></i>
+                                <i class="fa-heart fas fa-4x ml-2" ></i>
                             </a>
                         </div>
                     {% endif %}
