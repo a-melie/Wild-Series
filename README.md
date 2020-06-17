@@ -1,6 +1,7 @@
+Q26-Symfony : Embedding Controller : https://www.loom.com/share/c486ea72b85047019e858067180f8406
+
+
 Q24-Symfony : Watchlist en Ajax : https://www.loom.com/share/07687aa4f4ec4e9681b037f6b6a7214e
-
-
 Q23-Symfony : Sessions et messages flash : https://www.loom.com/share/21d0c263e2284731b6bf598dbe7767ea
 Q22-Symfony : Requêtes personnalisées: https://www.loom.com/share/df331851cb9c4568acc414c2c86e9311
 Q21-Symfony : Inscription d’un utilisateur : https://www.loom.com/share/e6432d6292244bb59899469b336e8dd6
