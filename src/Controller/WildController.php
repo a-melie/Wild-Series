@@ -185,6 +185,5 @@ class WildController extends AbstractController
 
     }
 
-
 }
 
