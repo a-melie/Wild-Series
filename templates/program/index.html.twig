@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ program.title }}</td>
                 <td>{{ program.summary }}</td>
-                <td><img src="{{ program.poster }}" alt=" affiche de {{ program.title }}" class="small_img"></td>
+                <td><img src="{{ vich_uploader_asset(program) }}" alt=" affiche de {{ program.title }}" class="small_img"></td>
                 <td>{{ program.country }}</td>
                 <td>{{ program.year }}</td>
                 <td>

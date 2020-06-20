@@ -8,7 +8,7 @@
         <div class="d-flex flex-row justify-content-around -border-none mt-5">
             {% for program in programs %}
                 <div class="card text-center" >
-                    <img src="{{ program.poster }}" class="card-img-top" alt="affiche de {{ program.title }}">
+                    <img src="{{ vich_uploader_asset(program) }}" class="card-img-top" alt="affiche de {{ program.title }}">
                     <div class="card-body overflow-auto bg-primary border-primary">
                         <a href="{{ path('wild_show', {slug: program.slug}) }}"class="text-danger m-2">
                             <h5 class="card-title d-flex justify-content-center align-items-center">{{program.title}}

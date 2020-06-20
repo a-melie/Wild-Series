@@ -4,7 +4,7 @@
 {% block body %}
     <div class="container bg-primary border border-secondary mt-3 mb-3 rounded shadow ">
         <div class="media mt-3 mb-3">
-            <img class="align-self-start mr-3 imgsize" src="{{program.poster}}" alt="{{ program.title }} poster">
+            <img class="align-self-start mr-3 imgsize" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
             <div class="media-body">
                 <h1 class="mt-0">{{ program.title }}</h1>
                 <p>{{ program.summary }}</p>
