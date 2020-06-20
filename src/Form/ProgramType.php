@@ -21,7 +21,7 @@ class ProgramType extends AbstractType
             ->add('title', TextType::class, ['label' => 'Titre'])
             ->add('summary', TextType::class, ['label'=> 'Résumé'])
             ->add('posterFile', VichFileType::class, [
-                'label'=> 'affiche',
+                'label'=> 'Affiche',
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
