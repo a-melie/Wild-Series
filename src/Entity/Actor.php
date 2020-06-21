@@ -15,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=ActorRepository::class)
  * @UniqueEntity("name", message="cet acteur existe déjà")
+ * @UniqueEntity("poster", message="cette image existe déjà")
  * @Vich\Uploadable
  */
 class Actor
@@ -45,7 +46,18 @@ class Actor
     private $slug;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     * @Assert\File(
+     *      maxSize="5242880",
+     *      mimeTypes = {
+     *          "image/png",
+     *          "image/jpeg",
+     *          "image/jpg",
+     *          "image/gif",
+     *          "application/pdf",
+     *          "application/x-pdf"
+     *      },
+     *      mimeTypesMessage = "Please upload a valid file, png, jpeg, jpg, gif")
      */
     private $poster;
 
