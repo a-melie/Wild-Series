@@ -18,11 +18,13 @@
         {% for actor in actors %}
             <tr>
                 <td>{{ actor.name }}</td>
+                <td><img src="{{  vich_uploader_asset(actor)  }}" alt="picture of {{ actor.name }}" class="small_img"></td>
                 <td>
                     <a href="{{ path('actor_show', {'slug': actor.slug}) }}" class="text-success btn btn-warning mt-3">show</a>
                     <a href="{{ path('actor_edit', {'slug': actor.slug}) }}" class="text-success btn btn-warning mt-3" >edit</a>
                 </td>
             </tr>
+
         {% else %}
             <tr>
                 <td colspan="3">no records found</td>
